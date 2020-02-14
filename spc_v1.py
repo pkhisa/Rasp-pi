@@ -8,13 +8,16 @@ import time
 
 xc=True
 
-m1_f=15 #m1 is steering motor motor(right)
-m1_r=33#(left)
+m1_f=15 #m1 is steering motor
+(right)
+m1_r=33
+ #(left)
 m2_f=35 #m2 is Driving motor
 m2_r=37
 sl_t=21 #sl means sonar_left
 sl_e=19
-sb_t=38#sb means sonar_back
+sb_t=38
+ #sb means sonar_back
 sb_e=40
 reset=7
 
@@ -45,13 +48,11 @@ def forward():
     M2_r.ChangeDutyCycle(0)
 
 def stop():
-    # ~ global xc
     M1_f.ChangeDutyCycle(0)
     M1_r.ChangeDutyCycle(0)
     M2_f.ChangeDutyCycle(0)
     M2_r.ChangeDutyCycle(0)
     print("Stop")
-    # ~ xc=False
     
     
 def parkstop():
@@ -85,7 +86,8 @@ def park():
     M1_r.ChangeDutyCycle(100)
     M2_r.ChangeDutyCycle(100)
     t_end = time.time()+4.3
-    while time.time()<t_end:#calculation on parking
+    while time.time()<t_end:
+#calculation on parking
         dis_back=distance(sb_t,sb_e)
         time.sleep(0.05)
     time.sleep(0.1)
@@ -109,17 +111,20 @@ if __name__ == '__main__':
         dis_left=distance(sl_t,sl_e)
         dis_back=distance(sb_t,sb_e)
         time.sleep(0.5)
-        while dis_left>dis_left_ini+2:#distance checking
+        while dis_left>dis_left_ini+2:
+#distance checking
             time.sleep(2)
             dis_back=distance(sb_t,sb_e)
             dis_left_2=distance(sl_t,sl_e)
-            if dis_left_2 > dis_left_ini+3:#parking after spot detecting
+            if dis_left_2 > dis_left_ini+3:
+#parking after spot detecting
                 print("Parking available..!!")
                 park()
                 while xc==True:
                     print("While True")
                     time.sleep(0.1)
-                    if io.input(reset)==1:#reset button
+                    if io.input(reset)==1:
+#reset button
                         c=1
                         print("done")
                         break
